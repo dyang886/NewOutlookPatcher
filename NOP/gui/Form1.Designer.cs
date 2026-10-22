@@ -111,7 +111,7 @@
             chkDisableAdsPanel.Name = "chkDisableAdsPanel";
             chkDisableAdsPanel.Size = new Size(386, 55);
             chkDisableAdsPanel.TabIndex = 19;
-            chkDisableAdsPanel.Text = "Disable ads panel\r\nA column of display ads on the right side, as in Outlook on the web. Microsoft currently keeps it off in this app, but can turn it on at any time.";
+            chkDisableAdsPanel.Text = "Disable ads panel\r\nDisplay ads in a column on the right, as in Outlook on the web. Off in this app for now, but Microsoft can turn it on.";
             chkDisableAdsPanel.UseVisualStyleBackColor = true;
             chkDisableAdsPanel.CheckedChanged += chkDisableAll_CheckedChanged;
             //

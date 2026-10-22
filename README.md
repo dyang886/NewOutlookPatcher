@@ -5,6 +5,7 @@
 <ul>
   <li>Windows 10 Version 21H2 (OS Build 19044.4046)</li>
   <li>Windows 11 Version 23H2 (OS Build 22621.3296)</li>
+  <li>Windows 11 Version 25H2 (OS Build 26200.9711) with new Outlook 1.2026.1013.100</li>
 </ul>
 <h2>Features</h2>
 <ul>
@@ -14,6 +15,9 @@
   <li>Disable Word, Excel, PowerPoint, To Do, OneDrive, More apps icons</li>
   <li>Enable F12 Developer Tools</li>
 </ul>
+<div>
+  <img src="gui.png" width="400" alt="NewOutlookPatcher window">
+</div>
 <h2>How to?</h2>
 <ol type="1">
   <li>Download <code>NewOutlookPatcher.exe</code> from the <a href="https://github.com/dyang886/NewOutlookPatcher/releases/latest">latest release</a>.</li>
@@ -47,3 +51,4 @@ The patcher requires administrative access in order to perform the following ope
   <li>worker: Module that gets loaded by Outlook which injects custom JavaScript and CSS in the user interface.</li>
 </ul>
 <p>Successful compilation is only possible for x64 at the moment. Files packed in the final executable are always grabbed from the <code>Release</code> folder, beware when building in <code>Debug</code>.</p>
+<p>To build <code>NewOutlookPatcher.exe</code>, run the <code>Build NewOutlookPatcher.exe</code> task in VS Code (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>B</kbd>), or <code>powershell -ExecutionPolicy Bypass -File build.ps1</code>. It needs Visual Studio 2022 with the "Desktop development with C++" workload and the .NET 8 SDK (or newer). The result is <code>x64\Release\publish\NewOutlookPatcher.exe</code>.</p>
