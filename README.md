@@ -1,26 +1,22 @@
 <h1>NewOutlookPatcher</h1>
-<a href="https://discord.gg/gsPcfqHTD2"><img src="https://discordapp.com/api/guilds/1155912047897350204/widget.png?style=shield" alt="Join on Discord"></a>
 <p>Disable ads and product placement in new Outlook for Windows app.</p>
+<p>Fork of <a href="https://github.com/valinet/NewOutlookPatcher">valinet/NewOutlookPatcher</a>, updated for the current new Outlook.</p>
 <p>Tested on:</p>
 <ul>
   <li>Windows 10 Version 21H2 (OS Build 19044.4046)</li>
   <li>Windows 11 Version 23H2 (OS Build 22621.3296)</li>
 </ul>
-<h2>Donate</h2>
-<p><a href="https://github.com/valinet/NewOutlookPatcher?sponsor">PayPal donations</a></p>
 <h2>Features</h2>
 <ul>
   <li>Disable ad as first item in e-mails list</li>
   <li>Disable lower left corner OneDrive banner</li>
+  <li>Disable display ads panel on the right side (currently kept off by Microsoft in the app, but it can be turned on at any time)</li>
   <li>Disable Word, Excel, PowerPoint, To Do, OneDrive, More apps icons</li>
   <li>Enable F12 Developer Tools</li>
 </ul>
-<div>
-  <img src="https://github.com/valinet/NewOutlookPatcher/assets/6503598/8f60a3ee-b6de-4755-bccd-2dcc61386b6f" alt="Product image">
-</div>
 <h2>How to?</h2>
 <ol type="1">
-  <li>Download the <a href="https://github.com/valinet/NewOutlookPatcher/releases/latest/download/NewOutlookPatcher.exe">latest release</a>.</li>
+  <li>Download <code>NewOutlookPatcher.exe</code> from the <a href="https://github.com/dyang886/NewOutlookPatcher/releases/latest">latest release</a>.</li>
   <li>Run <code>NewOutlookPatcher</code>. Outlook will also open automatically in the background.</li>
   <li>Customize the configuration by checking/unchecking individual items.</li>
   <li>Press <code>Install</code>. The application will elevate itself, close Outlook, apply your setttings and restart Outlook for you.</li>
@@ -36,7 +32,7 @@ The patcher requires administrative access in order to perform the following ope
 <h2>Known issues</h2>
 <ul>
   <li>Patcher does not start? Install <a href="https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-desktop-8.0.3-windows-x64-installer">.NET Desktop Runtime 8</a>.</li>
-  <li><a href="https://github.com/valinet/NewOutlookPatcher/issues/1">Patcher is x64-only at the moment.</a></li>
+  <li>Patcher is x64-only at the moment.</li>
 </ul>
 <h2>How it works?</h2>
 <ul>
