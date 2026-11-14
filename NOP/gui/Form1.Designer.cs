@@ -35,12 +35,15 @@
             chkDisableFirstMailAd = new CheckBox();
             chkDisableOneDriveBanner = new CheckBox();
             chkDisableAdsPanel = new CheckBox();
+            chkDisableTips = new CheckBox();
             chkDisableWordIcon = new CheckBox();
             label3 = new Label();
             chkDisableExcelIcon = new CheckBox();
             chkDisablePowerPointIcon = new CheckBox();
             chkDisableOneDriveIcon = new CheckBox();
             chkDisableMoreAppsIcon = new CheckBox();
+            chkDisableRewardsButton = new CheckBox();
+            chkDisableBuyM365Button = new CheckBox();
             btnApplyRestart = new Button();
             btnAbout = new Button();
             timerCheckOutlook = new System.Windows.Forms.Timer(components);
@@ -107,20 +110,32 @@
             //
             chkDisableAdsPanel.Checked = true;
             chkDisableAdsPanel.CheckState = CheckState.Checked;
-            chkDisableAdsPanel.Location = new Point(12, 254);
+            chkDisableAdsPanel.Location = new Point(12, 315);
             chkDisableAdsPanel.Name = "chkDisableAdsPanel";
             chkDisableAdsPanel.Size = new Size(386, 55);
-            chkDisableAdsPanel.TabIndex = 19;
+            chkDisableAdsPanel.TabIndex = 20;
             chkDisableAdsPanel.Text = "Disable ads panel\r\nDisplay ads in a column on the right, as in Outlook on the web. Off in this app for now, but Microsoft can turn it on.";
             chkDisableAdsPanel.UseVisualStyleBackColor = true;
             chkDisableAdsPanel.CheckedChanged += chkDisableAll_CheckedChanged;
+            // 
+            // chkDisableTips
+            // 
+            chkDisableTips.Checked = true;
+            chkDisableTips.CheckState = CheckState.Checked;
+            chkDisableTips.Location = new Point(12, 254);
+            chkDisableTips.Name = "chkDisableTips";
+            chkDisableTips.Size = new Size(386, 55);
+            chkDisableTips.TabIndex = 19;
+            chkDisableTips.Text = "Disable \"Tips\" popups\r\nEvery \"Tips\" bubble Outlook pops up to introduce features or offers, including ones added in future updates.";
+            chkDisableTips.UseVisualStyleBackColor = true;
+            chkDisableTips.CheckedChanged += chkDisableAll_CheckedChanged;
             //
             // chkDisableWordIcon
             //
             chkDisableWordIcon.AutoSize = true;
             chkDisableWordIcon.Checked = true;
             chkDisableWordIcon.CheckState = CheckState.Checked;
-            chkDisableWordIcon.Location = new Point(12, 332);
+            chkDisableWordIcon.Location = new Point(12, 393);
             chkDisableWordIcon.Name = "chkDisableWordIcon";
             chkDisableWordIcon.Size = new Size(122, 19);
             chkDisableWordIcon.TabIndex = 5;
@@ -131,7 +146,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(7, 312);
+            label3.Location = new Point(7, 373);
             label3.Name = "label3";
             label3.Size = new Size(108, 15);
             label3.TabIndex = 6;
@@ -142,7 +157,7 @@
             chkDisableExcelIcon.AutoSize = true;
             chkDisableExcelIcon.Checked = true;
             chkDisableExcelIcon.CheckState = CheckState.Checked;
-            chkDisableExcelIcon.Location = new Point(12, 357);
+            chkDisableExcelIcon.Location = new Point(12, 418);
             chkDisableExcelIcon.Name = "chkDisableExcelIcon";
             chkDisableExcelIcon.Size = new Size(120, 19);
             chkDisableExcelIcon.TabIndex = 7;
@@ -155,7 +170,7 @@
             chkDisablePowerPointIcon.AutoSize = true;
             chkDisablePowerPointIcon.Checked = true;
             chkDisablePowerPointIcon.CheckState = CheckState.Checked;
-            chkDisablePowerPointIcon.Location = new Point(12, 382);
+            chkDisablePowerPointIcon.Location = new Point(12, 443);
             chkDisablePowerPointIcon.Name = "chkDisablePowerPointIcon";
             chkDisablePowerPointIcon.Size = new Size(154, 19);
             chkDisablePowerPointIcon.TabIndex = 8;
@@ -168,7 +183,7 @@
             chkDisableOneDriveIcon.AutoSize = true;
             chkDisableOneDriveIcon.Checked = true;
             chkDisableOneDriveIcon.CheckState = CheckState.Checked;
-            chkDisableOneDriveIcon.Location = new Point(213, 357);
+            chkDisableOneDriveIcon.Location = new Point(213, 418);
             chkDisableOneDriveIcon.Name = "chkDisableOneDriveIcon";
             chkDisableOneDriveIcon.Size = new Size(142, 19);
             chkDisableOneDriveIcon.TabIndex = 9;
@@ -181,7 +196,7 @@
             chkDisableMoreAppsIcon.AutoSize = true;
             chkDisableMoreAppsIcon.Checked = true;
             chkDisableMoreAppsIcon.CheckState = CheckState.Checked;
-            chkDisableMoreAppsIcon.Location = new Point(213, 382);
+            chkDisableMoreAppsIcon.Location = new Point(213, 443);
             chkDisableMoreAppsIcon.Name = "chkDisableMoreAppsIcon";
             chkDisableMoreAppsIcon.Size = new Size(149, 19);
             chkDisableMoreAppsIcon.TabIndex = 10;
@@ -189,11 +204,35 @@
             chkDisableMoreAppsIcon.UseVisualStyleBackColor = true;
             chkDisableMoreAppsIcon.CheckedChanged += chkDisableAll_CheckedChanged;
             // 
+            // chkDisableRewardsButton
+            // 
+            chkDisableRewardsButton.AutoSize = true;
+            chkDisableRewardsButton.Checked = true;
+            chkDisableRewardsButton.CheckState = CheckState.Checked;
+            chkDisableRewardsButton.Location = new Point(12, 468);
+            chkDisableRewardsButton.Name = "chkDisableRewardsButton";
+            chkDisableRewardsButton.TabIndex = 21;
+            chkDisableRewardsButton.Text = "Disable Rewards button";
+            chkDisableRewardsButton.UseVisualStyleBackColor = true;
+            chkDisableRewardsButton.CheckedChanged += chkDisableAll_CheckedChanged;
+            // 
+            // chkDisableBuyM365Button
+            // 
+            chkDisableBuyM365Button.AutoSize = true;
+            chkDisableBuyM365Button.Checked = true;
+            chkDisableBuyM365Button.CheckState = CheckState.Checked;
+            chkDisableBuyM365Button.Location = new Point(213, 468);
+            chkDisableBuyM365Button.Name = "chkDisableBuyM365Button";
+            chkDisableBuyM365Button.TabIndex = 22;
+            chkDisableBuyM365Button.Text = "Disable Buy Microsoft 365";
+            chkDisableBuyM365Button.UseVisualStyleBackColor = true;
+            chkDisableBuyM365Button.CheckedChanged += chkDisableAll_CheckedChanged;
+            // 
             // btnApplyRestart
             // 
             btnApplyRestart.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btnApplyRestart.Enabled = false;
-            btnApplyRestart.Location = new Point(300, 489);
+            btnApplyRestart.Location = new Point(300, 575);
             btnApplyRestart.Name = "btnApplyRestart";
             btnApplyRestart.Size = new Size(98, 29);
             btnApplyRestart.TabIndex = 11;
@@ -204,7 +243,7 @@
             // btnAbout
             // 
             btnAbout.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnAbout.Location = new Point(12, 489);
+            btnAbout.Location = new Point(12, 575);
             btnAbout.Name = "btnAbout";
             btnAbout.Size = new Size(98, 29);
             btnAbout.TabIndex = 12;
@@ -234,7 +273,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(7, 404);
+            label4.Location = new Point(7, 490);
             label4.Name = "label4";
             label4.Size = new Size(37, 15);
             label4.TabIndex = 14;
@@ -245,7 +284,7 @@
             chkF12.AutoSize = true;
             chkF12.Checked = true;
             chkF12.CheckState = CheckState.Checked;
-            chkF12.Location = new Point(12, 422);
+            chkF12.Location = new Point(12, 508);
             chkF12.Name = "chkF12";
             chkF12.Size = new Size(165, 19);
             chkF12.TabIndex = 15;
@@ -255,7 +294,7 @@
             // 
             // label5
             // 
-            label5.Location = new Point(7, 453);
+            label5.Location = new Point(7, 539);
             label5.Name = "label5";
             label5.Size = new Size(391, 33);
             label5.TabIndex = 16;
@@ -266,7 +305,7 @@
             chkDisableToDoIcon.AutoSize = true;
             chkDisableToDoIcon.Checked = true;
             chkDisableToDoIcon.CheckState = CheckState.Checked;
-            chkDisableToDoIcon.Location = new Point(213, 332);
+            chkDisableToDoIcon.Location = new Point(213, 393);
             chkDisableToDoIcon.Name = "chkDisableToDoIcon";
             chkDisableToDoIcon.Size = new Size(123, 19);
             chkDisableToDoIcon.TabIndex = 17;
@@ -278,7 +317,7 @@
             // 
             btnUninstall.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btnUninstall.Enabled = false;
-            btnUninstall.Location = new Point(196, 489);
+            btnUninstall.Location = new Point(196, 575);
             btnUninstall.Name = "btnUninstall";
             btnUninstall.Size = new Size(98, 29);
             btnUninstall.TabIndex = 18;
@@ -291,7 +330,7 @@
             AcceptButton = btnApplyRestart;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(410, 530);
+            ClientSize = new Size(410, 616);
             Controls.Add(btnUninstall);
             Controls.Add(chkDisableToDoIcon);
             Controls.Add(label5);
@@ -300,12 +339,15 @@
             Controls.Add(chkDisableAll);
             Controls.Add(btnAbout);
             Controls.Add(btnApplyRestart);
+            Controls.Add(chkDisableBuyM365Button);
+            Controls.Add(chkDisableRewardsButton);
             Controls.Add(chkDisableMoreAppsIcon);
             Controls.Add(chkDisableOneDriveIcon);
             Controls.Add(chkDisablePowerPointIcon);
             Controls.Add(chkDisableExcelIcon);
             Controls.Add(label3);
             Controls.Add(chkDisableWordIcon);
+            Controls.Add(chkDisableTips);
             Controls.Add(chkDisableAdsPanel);
             Controls.Add(chkDisableOneDriveBanner);
             Controls.Add(chkDisableFirstMailAd);
@@ -335,12 +377,15 @@
         private CheckBox chkDisableFirstMailAd;
         private CheckBox chkDisableOneDriveBanner;
         private CheckBox chkDisableAdsPanel;
+        private CheckBox chkDisableTips;
         private CheckBox chkDisableWordIcon;
         private Label label3;
         private CheckBox chkDisableExcelIcon;
         private CheckBox chkDisablePowerPointIcon;
         private CheckBox chkDisableOneDriveIcon;
         private CheckBox chkDisableMoreAppsIcon;
+        private CheckBox chkDisableRewardsButton;
+        private CheckBox chkDisableBuyM365Button;
         private Button btnApplyRestart;
         private Button btnAbout;
         private System.Windows.Forms.Timer timerCheckOutlook;

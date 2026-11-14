@@ -5,15 +5,31 @@
 <ul>
   <li>Windows 10 Version 21H2 (OS Build 19044.4046)</li>
   <li>Windows 11 Version 23H2 (OS Build 22621.3296)</li>
-  <li>Windows 11 Version 25H2 (OS Build 26200.9711) with new Outlook 1.2026.1013.100</li>
+  <li>Windows 11 Version 25H2 (OS Build 26200.9974) with new Outlook 1.2026.1026.100</li>
 </ul>
 <h2>Features</h2>
+<p>Each of these can be switched on or off in the patcher's window. The previews below show what each option removes; the mail and accounts in them are placeholders, the ads are real.</p>
+<h3>Advertisements</h3>
+<h4>Disable ad as first item in e-mails list</h4>
+<p>Unless you pay for Microsoft 365, the first item in the mail list is an ad. It is hidden before Outlook draws it, together with the empty space Outlook reserves for it while it loads.</p>
+<img src="images/first-mail-ad.png" width="400" alt="An ad as the first item in the mail list">
+<h4>Disable OneDrive banner</h4>
+<p>A banner at the bottom of the folder pane, promoting OneDrive storage, Microsoft 365 or the Outlook mobile app.</p>
+<img src="images/onedrive-banner.png" width="400" alt="A banner at the bottom of the folder pane">
+<h4>Disable "Tips" popups</h4>
+<p>Every "Tips" bubble Outlook pops up to introduce features or offers, such as the Microsoft Rewards sweepstakes, including ones added in future updates. These are the ones in the current Outlook, each with where it normally appears:</p>
+<img src="images/tips.png" alt="All Tips bubbles of the current Outlook">
+<h4>Disable ads panel</h4>
+<p>A column of display ads on the right, as in Outlook on the web. Microsoft currently keeps it switched off in the app, but can turn it on at any time.</p>
+<img src="images/ads-panel.png" width="720" alt="A column of display ads on the right of the reading pane">
+<h3>Product placement</h3>
 <ul>
-  <li>Disable ad as first item in e-mails list</li>
-  <li>Disable lower left corner OneDrive banner</li>
-  <li>Disable display ads panel on the right side (currently kept off by Microsoft in the app, but it can be turned on at any time)</li>
-  <li>Disable Word, Excel, PowerPoint, To Do, OneDrive, More apps icons</li>
-  <li>Enable F12 Developer Tools</li>
+  <li>Disable Word, Excel, PowerPoint, To Do, OneDrive and More apps icons in the sidebar</li>
+  <li>Disable Rewards and Buy Microsoft 365 buttons in the title bar</li>
+</ul>
+<h3>Other</h3>
+<ul>
+  <li>F12 opens Developer Tools</li>
 </ul>
 <div>
   <img src="gui.png" width="400" alt="NewOutlookPatcher window">
@@ -42,7 +58,7 @@ The patcher requires administrative access in order to perform the following ope
 <ul>
   <li>Everything is packed together in a tiny .NET 8-based executable. Required resources are extracted to a temporary folder at runtime.</li>
   <li>New Outlook (<code>olk.exe</code>) is patched using a DLL that is injected in its process. The DLL is loaded using the <code>AppVerifier</code> infrastructure. The project contains a very clean C++ implementation of this technique. This works because the process is not protected, thus being able to load unsigned code.</li>
-  <li>The actual patching is done by hooking WebView2 methods, in order to execute scripts that alter the CSS once the main interface loads.</li>
+  <li>The actual patching is done by hooking WebView2 methods, so that a script runs in Outlook's page before any of Outlook's own code. It hides elements with CSS and by the name of the React component that draws them, which, unlike Outlook's generated class names, survives Outlook updates.</li>
 </ul>
 <h2>Solution structure</h2>
 <p>The Visual Studio solution is divided in 5 projects:</p>

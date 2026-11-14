@@ -155,6 +155,9 @@ namespace gui
                 buffer = BytesReplace(buffer, Encoding.Unicode.GetBytes(".GssDD, "), Encoding.Unicode.GetBytes("        "), ref numMatches);
                 chkDisableAdsPanel.Checked = (numMatches > 0);
                 numMatches = 0;
+                buffer = BytesReplace(buffer, Encoding.Unicode.GetBytes("OutlookTeachingBubble OutlookInlineTips "), Encoding.Unicode.GetBytes("                                        "), ref numMatches);
+                chkDisableTips.Checked = (numMatches > 0);
+                numMatches = 0;
                 buffer = BytesReplace(buffer, Encoding.Unicode.GetBytes("[id='34318026-c018-414b-abb3-3e32dfb9cc4c'], "), Encoding.Unicode.GetBytes("                                             "), ref numMatches);
                 chkDisableWordIcon.Checked = (numMatches > 0);
                 numMatches = 0;
@@ -173,6 +176,12 @@ namespace gui
                 buffer = BytesReplace(buffer, Encoding.Unicode.GetBytes("[data-tid='appbar-flyout-button'], "), Encoding.Unicode.GetBytes("                                   "), ref numMatches);
                 buffer = BytesReplace(buffer, Encoding.Unicode.GetBytes(".___1fkhojs.f22iagw.f122n59.f1vx9l62.f1c21dwh.fqerorx.f1i5mqs4, "), Encoding.Unicode.GetBytes("                                                                "), ref numMatches); // Selector used by older versions
                 chkDisableMoreAppsIcon.Checked = (numMatches > 0);
+                numMatches = 0;
+                buffer = BytesReplace(buffer, Encoding.Unicode.GetBytes("#owaRewardsBtn_container, [data-overflow-item]:has(> #owaRewardsBtn_container), "), Encoding.Unicode.GetBytes("                                                                                "), ref numMatches);
+                chkDisableRewardsButton.Checked = (numMatches > 0);
+                numMatches = 0;
+                buffer = BytesReplace(buffer, Encoding.Unicode.GetBytes("#owaBuyMicrosoft365Btn_container, "), Encoding.Unicode.GetBytes("                                  "), ref numMatches);
+                chkDisableBuyM365Button.Checked = (numMatches > 0);
                 numMatches = 0;
                 buffer = BytesReplace(buffer, Encoding.Unicode.GetBytes("y_1A36CD25-E20F-4D0D-B1E6-3CC4307E1488"), Encoding.Unicode.GetBytes("n"), ref numMatches);
                 chkF12.Checked = (numMatches > 0);
@@ -230,7 +239,7 @@ Proudly engineered by Valentin-Gabriel Radu.",
         {
             this.TopMost = false;
 
-            bool uninstall = ((!chkDisableFirstMailAd.Checked && !chkDisableOneDriveBanner.Checked && !chkDisableAdsPanel.Checked && !chkDisableWordIcon.Checked && !chkDisableExcelIcon.Checked && !chkDisablePowerPointIcon.Checked && !chkDisableToDoIcon.Checked && !chkDisableOneDriveIcon.Checked && !chkDisableMoreAppsIcon.Checked && !chkF12.Checked) || (sender == btnUninstall));
+            bool uninstall = ((!chkDisableFirstMailAd.Checked && !chkDisableOneDriveBanner.Checked && !chkDisableAdsPanel.Checked && !chkDisableTips.Checked && !chkDisableWordIcon.Checked && !chkDisableExcelIcon.Checked && !chkDisablePowerPointIcon.Checked && !chkDisableToDoIcon.Checked && !chkDisableOneDriveIcon.Checked && !chkDisableMoreAppsIcon.Checked && !chkDisableRewardsButton.Checked && !chkDisableBuyM365Button.Checked && !chkF12.Checked) || (sender == btnUninstall));
 
             string exeName = "Press Yes to apply new settings to olk.exe";
             if (!IsPatcherInstalled()) exeName = "Press Yes to install patcher in olk.exe";
@@ -281,6 +290,11 @@ Proudly engineered by Valentin-Gabriel Radu.",
                                 buffer = BytesReplace(buffer, Encoding.Unicode.GetBytes(".GssDD, "), Encoding.Unicode.GetBytes("        "), ref numMatches);
                                 buffer = BytesReplace(buffer, Encoding.Unicode.GetBytes("AdsPanel "), Encoding.Unicode.GetBytes("         "), ref numMatches);
                             }
+                            if (!chkDisableTips.Checked)
+                            {
+                                buffer = BytesReplace(buffer, Encoding.Unicode.GetBytes(".ms-Layer:has(img[src*='RewardsSweepstakesIllustration']), "), Encoding.Unicode.GetBytes("                                                           "), ref numMatches);
+                                buffer = BytesReplace(buffer, Encoding.Unicode.GetBytes("OutlookTeachingBubble OutlookInlineTips RewardsSweepstakesTip "), Encoding.Unicode.GetBytes("                                                              "), ref numMatches);
+                            }
                             if (!chkDisableWordIcon.Checked)
                                 buffer = BytesReplace(buffer, Encoding.Unicode.GetBytes("[id='34318026-c018-414b-abb3-3e32dfb9cc4c'], "), Encoding.Unicode.GetBytes("                                             "), ref numMatches);
                             if (!chkDisableExcelIcon.Checked)
@@ -296,6 +310,19 @@ Proudly engineered by Valentin-Gabriel Radu.",
                                 buffer = BytesReplace(buffer, Encoding.Unicode.GetBytes("[id='39109bd4-9389-4731-b8d6-7cc1a128d0b3'], "), Encoding.Unicode.GetBytes("                                             "), ref numMatches);
                             if (!chkDisableMoreAppsIcon.Checked)
                                 buffer = BytesReplace(buffer, Encoding.Unicode.GetBytes("[data-tid='appbar-flyout-button'], "), Encoding.Unicode.GetBytes("                                   "), ref numMatches);
+                            if (!chkDisableRewardsButton.Checked)
+                            {
+                                buffer = BytesReplace(buffer, Encoding.Unicode.GetBytes("#owaRewardsBtn_container, [data-overflow-item]:has(> #owaRewardsBtn_container), "), Encoding.Unicode.GetBytes("                                                                                "), ref numMatches);
+                                buffer = BytesReplace(buffer, Encoding.Unicode.GetBytes("RewardsMedallion "), Encoding.Unicode.GetBytes("                 "), ref numMatches);
+                                buffer = BytesReplace(buffer, Encoding.Unicode.GetBytes("#owaHeaderButtonGroupRight_container:has(#owaRewardsBtn_container), "), Encoding.Unicode.GetBytes("                                                                    "), ref numMatches);
+                                buffer = BytesReplace(buffer, Encoding.Unicode.GetBytes("div:has(> #owaHeaderButtonGroupRight_container #owaRewardsBtn_container), "), Encoding.Unicode.GetBytes("                                                                          "), ref numMatches);
+                            }
+                            if (!chkDisableBuyM365Button.Checked)
+                            {
+                                buffer = BytesReplace(buffer, Encoding.Unicode.GetBytes("#owaBuyMicrosoft365Btn_container, "), Encoding.Unicode.GetBytes("                                  "), ref numMatches);
+                                buffer = BytesReplace(buffer, Encoding.Unicode.GetBytes("#owaHeaderButtonGroupRight_container:has(#owaBuyMicrosoft365Btn_container), "), Encoding.Unicode.GetBytes("                                                                            "), ref numMatches);
+                                buffer = BytesReplace(buffer, Encoding.Unicode.GetBytes("div:has(> #owaHeaderButtonGroupRight_container #owaBuyMicrosoft365Btn_container), "), Encoding.Unicode.GetBytes("                                                                                  "), ref numMatches);
+                            }
                             if (!chkF12.Checked)
                                 buffer = BytesReplace(buffer, Encoding.Unicode.GetBytes("y_1A36CD25-E20F-4D0D-B1E6-3CC4307E1488"), Encoding.Unicode.GetBytes("n"), ref numMatches);
 
@@ -389,17 +416,20 @@ Proudly engineered by Valentin-Gabriel Radu.",
                     chkDisableFirstMailAd.Checked = chkDisableAll.Checked;
                     chkDisableOneDriveBanner.Checked = chkDisableAll.Checked;
                     chkDisableAdsPanel.Checked = chkDisableAll.Checked;
+                    chkDisableTips.Checked = chkDisableAll.Checked;
                     chkDisableWordIcon.Checked = chkDisableAll.Checked;
                     chkDisableExcelIcon.Checked = chkDisableAll.Checked;
                     chkDisablePowerPointIcon.Checked = chkDisableAll.Checked;
                     chkDisableToDoIcon.Checked = chkDisableAll.Checked;
                     chkDisableOneDriveIcon.Checked = chkDisableAll.Checked;
                     chkDisableMoreAppsIcon.Checked = chkDisableAll.Checked;
+                    chkDisableRewardsButton.Checked = chkDisableAll.Checked;
+                    chkDisableBuyM365Button.Checked = chkDisableAll.Checked;
                     chkF12.Checked = chkDisableAll.Checked;
                 }
                 else
                 {
-                    bool all = chkDisableFirstMailAd.Checked && chkDisableOneDriveBanner.Checked && chkDisableAdsPanel.Checked && chkDisableWordIcon.Checked && chkDisableExcelIcon.Checked && chkDisablePowerPointIcon.Checked && chkDisableToDoIcon.Checked && chkDisableOneDriveIcon.Checked && chkDisableMoreAppsIcon.Checked && chkF12.Checked;
+                    bool all = chkDisableFirstMailAd.Checked && chkDisableOneDriveBanner.Checked && chkDisableAdsPanel.Checked && chkDisableTips.Checked && chkDisableWordIcon.Checked && chkDisableExcelIcon.Checked && chkDisablePowerPointIcon.Checked && chkDisableToDoIcon.Checked && chkDisableOneDriveIcon.Checked && chkDisableMoreAppsIcon.Checked && chkDisableRewardsButton.Checked && chkDisableBuyM365Button.Checked && chkF12.Checked;
                     if (all) chkDisableAll.Checked = true;
                     else chkDisableAll.Checked = false;
                 }

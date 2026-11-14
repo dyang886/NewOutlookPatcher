@@ -166,8 +166,10 @@ LRESULT _WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 // Outlook's class names (.jYY8g, .syTot, ...) are generated and change from one Outlook build to the next, while its React component
 // names (MessageAdList, LeftnavUpsell, ...) are set explicitly in its code and survive updates. So elements are primarily hidden by the
 // component that renders them (any component whose name starts with an entry of hiddenComponents): a MutationObserver marks such elements
-// with data-nop-hidden as soon as they are inserted, which happens before the next paint. Stable ids and the current class names are kept
-// in the CSS as a second, independent way to match.
+// with data-nop-hidden as soon as they are inserted, which happens before the next paint. The components checked for an element are the
+// ones between it and the closest DOM element that contains it; for popups, which are rendered through a portal elsewhere in the DOM, this
+// goes past the portal up to the component that opened the popup. Stable ids and the current class names are kept in the CSS as a second,
+// independent way to match.
 static const wchar_t* const g_script = L"\
 (() => {\n\
 if (window[Symbol.for('NewOutlookPatcher')]) return;\n\
@@ -179,6 +181,7 @@ const cssClass = \"\
 .jYY8g, "                                                            /* Space reserved for the first "email" ad while it loads */ L"\
 .syTot, "                                                            /* Lower left OneDrive subscription banner */ L"\
 .GssDD, "                                                            /* Display ads panel on the right (or bottom) side */ L"\
+.ms-Layer:has(img[src*='RewardsSweepstakesIllustration']), "         /* "Tips" popups: the Rewards sweepstakes one, also by its illustration */ L"\
 [id='34318026-c018-414b-abb3-3e32dfb9cc4c'], "                       /* Word button in sidebar */ L"\
 [id='c5251a9b-a95d-4595-91ee-a39e6eed3db2'], "                       /* Excel button in sidebar */ L"\
 [id='48cb9ead-1c19-4e1f-8ed9-3d60a7e52b18'], "                       /* PowerPoint button in sidebar */ L"\
@@ -186,12 +189,22 @@ const cssClass = \"\
 [id='0d5c91ee-5be2-4b79-81ed-23e6c4580427'], "                       /* To Do button in sidebar (newer app, ToDoMetaOs) */ L"\
 [id='39109bd4-9389-4731-b8d6-7cc1a128d0b3'], "                       /* OneDrive button in sidebar */ L"\
 [data-tid='appbar-flyout-button'], "                                 /* More apps button in sidebar */ L"\
+#owaRewardsBtn_container, [data-overflow-item]:has(> #owaRewardsBtn_container), " /* Microsoft Rewards button in title bar, with its padded wrapper */ L"\
+#owaBuyMicrosoft365Btn_container, "                                  /* Buy Microsoft 365 button in title bar */ L"\
 [data-nop-hidden], "                                                 /* Elements rendered by hiddenComponents */ L"\
-[id='D64D0004-2A11-442B-9586-F49009D4852B'] { display: none !important; }\";\n\
+[id='D64D0004-2A11-442B-9586-F49009D4852B'] { display: none !important; } \
+#owaHeaderButtonGroupRight_container:has(#owaRewardsBtn_container), "      /* Keep the remaining title bar buttons next to the window buttons */ L"\
+#owaHeaderButtonGroupRight_container:has(#owaBuyMicrosoft365Btn_container), " /* (Outlook doesn't resize this group when buttons are hidden) */ L"\
+#NewOutlookPatcher-none { justify-content: flex-end !important; } \
+div:has(> #owaHeaderButtonGroupRight_container #owaRewardsBtn_container), "      /* ...and stop that group reaching 20 px under the window buttons, */ L"\
+div:has(> #owaHeaderButtonGroupRight_container #owaBuyMicrosoft365Btn_container), " /* where its last button then overlaps the minimize button */ L"\
+#NewOutlookPatcher-none { margin-right: 0 !important; }\";\n\
 const hiddenComponents = \"\
 MessageAdList "                                                      /* First "email" ad, its loading shimmer and the space reserved for it */ L"\
 LeftnavUpsell "                                                      /* Lower left OneDrive subscription banner */ L"\
 AdsPanel "                                                           /* Display ads panel on the right (or bottom) side, and its placeholder (AdsPanelStub) */ L"\
+OutlookTeachingBubble OutlookInlineTips RewardsSweepstakesTip "      /* All "Tips" popups: every tip, including future ones, is shown through these views (the Rewards sweepstakes one also by name) */ L"\
+RewardsMedallion "                                                   /* Microsoft Rewards button in title bar, and the popups it opens */ L"\
 \".split(' ').filter(Boolean);\n\
 const inject = () => {\n\
     if (document.getElementById(styleId)) return true;\n\
@@ -215,7 +228,11 @@ const getFiber = element => {\n\
 const componentName = type => type && (type.displayName || type.name || (type.render && (type.render.displayName || type.render.name)) || (type.type && (type.type.displayName || type.type.name)));\n\
 const isRenderedByHiddenComponent = element => {\n\
     const fiber = getFiber(element);\n\
-    for (let owner = fiber && fiber.return; owner && typeof owner.type !== 'string'; owner = owner.return) {\n\
+    for (let owner = fiber && fiber.return; owner; owner = owner.return) {\n\
+        if (typeof owner.type === 'string') {\n\
+            if (owner.stateNode && owner.stateNode.contains && owner.stateNode.contains(element)) return false;\n\
+            continue;\n\
+        }\n\
         const name = componentName(owner.type);\n\
         if (typeof name === 'string' && hiddenComponents.some(prefix => name.startsWith(prefix))) return true;\n\
     }\n\
